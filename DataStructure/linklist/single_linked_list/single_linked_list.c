@@ -4,64 +4,114 @@
 static Node* new_node(int value)
 {
 	Node *new = (Node *)malloc(sizeof(Node));
-	if (!new) 
+	if (!new) {
 		printf("[%s] malloc fdailed \n", __func__);
+		return NULL;
+	} 
 
 	new->next = NULL;
 	new->value = value;
 	return new;
 }
 
-int add_node(Node* ptNode, int value)
+Node* add_node(Node* head, int value)
 {
-	// if (!ptNode) {
-	//  	printf("[%s] invalid node \n", __func__);
-	//  	return -1;
-	// }
+	node *curr = head;
+	if (!curr) {
+		curr = new_node(value);
+	}else {
+		Node *tmp = curr;
+		Node *new = new_node(value);
+		if (!new) {
+			printf("[%s] something wrong\n", __func__);
+			return curr;
+		}
 
-	Node* curr = ptNode;
-	Node* new = new_node(value);
-	//find the last 
-	while (NULL != curr->next)
-		curr = curr->next;
+		while (!tmp->next) {
+			tmp = tmp->next;
+		}
+		tmp->next = new;
+	}
 
-	//add to last 
-	curr->next = new;
-	return 0;	
+	return curr;	
 }
 
-Node* delete_node(Node* ptNode, int value)
+int delete_node(Node* head, int value)
 {
-	if (!ptNode) {
+	if (!head) {
 	 	printf("[%s] invalid node \n", __func__);
 	 	return -1;
 	}
 	
-	Node* head = ptNode;
-	Node* curr = head;
-	if (!head) {
-		printf("[%s] no list n", __func__);
-		return NULL;
-	}
-
-	//check head
-	if (value == head->value) {
-		head = head->next;
-		curr->next = NULL;
+	Node *curr = head;
+	Node *prev;
+	if (value == curr->value) {
+		head = head ->next;
+		free(curr);
 	} else {
-		while(NULL != curr->next)
-		{
-			if (value == curr->value) {
-
-			}
-
-			curr = curr->next;
+		
+		while (!curr &&  value != curr->value)	{	
+			prev = curr;
+			curr = curr->next
 		}
-	}
 
-	return head;
+		prev->next = curr->next;
+	}
+	return 0;
 }
 
-int print_node(Node *ptNode);
+int print_node(Node *head)
+{
+	if (!head) {
+		printf("[%s] there is no list \n", __func__);
+		return -1;
+	}
 
-int reverse_list(Node *ptNode);
+	Node *curr = head;
+	while (curr) {
+		printf("value %d \n", head->value);
+		curr = curr->next
+	}
+	return 0;
+}
+
+int reverse_list(Node *head)
+{
+	if (!head) {
+		printf("[%s] there is no list\n", __func__);
+		return -1; 
+	}
+#if 0
+//method 1
+	Node *curr, *prev;
+	curr = head;
+	preceding = curr->next;
+	prev = NULL;
+	while (NULL != preceding) {
+		curr->next = prev;
+		prev = curr;
+		curr = preceding;
+		preceding = preceding->next
+	}
+
+	curr->next = prev;
+	head = curr;
+
+#endif 
+	#if 1
+//method 2 
+	Node *prev = NULL;
+	//Node *next = NULL;
+	Node *curr = head;
+	Node *next;
+	while (!curr) {
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+
+	head = prev;
+	#endif 
+	return 0;
+}	
