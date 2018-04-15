@@ -5,18 +5,18 @@
 extern "C" {
 #endif
 
-typedef struct {
+typedef struct node{
 	struct node *next;
 	int value;
-}NODE;
+}Node;
 
-int add_node(Node* ptNode, int value);
+Node* add_node(Node* head, int value);
 
-int delete_node(Node* ptNode, int value);
+int delete_node(Node* head, int value);
 
-int print_node(Node *ptNode);
+int print_node(Node *head);
 
-int reverse_list(Node *ptNode);
+int reverse_list(Node *head);
 
 #ifdef __cplusplus
 }

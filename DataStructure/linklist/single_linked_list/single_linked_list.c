@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "single_linked_list.h"
 
 static Node* new_node(int value)
@@ -16,24 +17,25 @@ static Node* new_node(int value)
 
 Node* add_node(Node* head, int value)
 {
-	node *curr = head;
-	if (!curr) {
-		curr = new_node(value);
+	
+	if (!head) {
+		head = new_node(value);
 	}else {
-		Node *tmp = curr;
+		Node *curr = head;
+		//Node *tmp = curr;
 		Node *new = new_node(value);
 		if (!new) {
 			printf("[%s] something wrong\n", __func__);
 			return curr;
 		}
 
-		while (!tmp->next) {
-			tmp = tmp->next;
+		while (!curr->next) {
+			curr = curr->next;
 		}
-		tmp->next = new;
+		curr->next = new;
 	}
 
-	return curr;	
+	return head;	
 }
 
 int delete_node(Node* head, int value)
@@ -52,7 +54,7 @@ int delete_node(Node* head, int value)
 		
 		while (!curr &&  value != curr->value)	{	
 			prev = curr;
-			curr = curr->next
+			curr = curr->next;
 		}
 
 		prev->next = curr->next;
@@ -69,8 +71,8 @@ int print_node(Node *head)
 
 	Node *curr = head;
 	while (curr) {
-		printf("value %d \n", head->value);
-		curr = curr->next
+		printf("value %d \n", curr->value);
+		curr = curr->next;
 	}
 	return 0;
 }
