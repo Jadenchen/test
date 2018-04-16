@@ -1,7 +1,7 @@
 
-TARGET			= single_link_list
+TARGET			= stack
 
-OBJECTS  		= main.c single_linked_list.c
+OBJECTS  		= main.c stack.c
 
 CROSS_COMPILE   = 
 AS				= $(CROSS_COMPILE)as
@@ -21,6 +21,7 @@ $(TARGET): $(OBJECTS)
 	@ echo "Generating $(TARGET)"
 	@ $(CC) -o $(TARGET) $(OBJECTS) $(LINCS) $(LDFLAGS) $(CINCS) $(CFLAGS)
 
+
 .SUFFIXES: .c
 
 .c.o:
@@ -28,4 +29,4 @@ $(TARGET): $(OBJECTS)
 	@ $(CC) $(CFLAGS) $(CINCS) -c $*.c -o $(OBJECTS)
 
 clean:
-	rm  $(TARGET) $(OBJECTS)
+	rm  $(TARGET)
