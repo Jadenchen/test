@@ -4,12 +4,11 @@
 int main (void)
 {	
 	Node* head = NULL;
-	head = add_node(head, 1); 
-	head = add_node(head, 2);
-	head = add_node(head, 3); 
-	head = add_node(head, 4); 
-	
-	print_node(head);
+ 	enqueue(&head, 1); 
+	enqueue(&head, 2);
+	enqueue(&head, 3); 
+	enqueue(&head, 4); 
+	show(head);
 	printf("leave done\n");
     return 0;
 }

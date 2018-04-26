@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
-
+/* stack: last in, first out*/
 static Node* new_node(int value)
 {
 	Node* tmp = (Node *)malloc(sizeof(Node));

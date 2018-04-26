@@ -10,7 +10,13 @@ typedef struct node{
 	int value;
 }Node;
 
-Node* add_node(Node* head, int value);
+//Node* add_node(Node* head, int value);
+
+int enqueue (Node **head, int value);
+
+int dequeue (Node **head);
+
+int show (Node *head);
 
 #ifdef __cplusplus
 }
